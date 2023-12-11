@@ -1,10 +1,11 @@
 import React from 'react';
 
 const Footer = () => (
-  <footer className="bg-light p-3 text-center" data-testid="footer">
-    <div className="logo" data-testid="footer-logo" />
+  <footer className="bg-light text-center" data-testid="footer">
     <p data-testid="footer-text">
-      Sample project provided by <a href="https://auth0.com">Auth0</a>
+      Aplikacja stworzona przez Jakub Stawskiego i Bartosza Siembora <br />
+      Studentów Informatyki na WSPA
+      II Rok, Tryb NST PUW
     </p>
   </footer>
 );

@@ -1,6 +1,6 @@
 'use  client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Collapse,
   Container,
@@ -24,9 +24,24 @@ const NavBar = () => {
   const { user, isLoading } = useUser();
   const toggle = () => setIsOpen(!isOpen);
 
+  // useEffect(() => {
+  //   if (user) {
+  //     fetch("/api/mssql/user-update", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json"
+  //       },
+  //       body: JSON.stringify({
+  //         email: user.name,
+  //         name: user.nickname,
+  //       })
+  //     })
+  //   }
+  // }, [user]);
+
   return (
     <div className="nav-container" data-testid="navbar">
-      <Navbar color="light" light expand="md">
+      <Navbar color="light" light expand="sm">
         <Container className='navbar-container-inner'>
           <a className="navbar-logo" href="/">VTS</a>
           <NavbarToggler onClick={toggle} data-testid="navbar-toggle" />
@@ -36,25 +51,12 @@ const NavBar = () => {
                 <PageLink href="/" className="nav-link" testId="navbar-home">
                   Home
                 </PageLink>
-                <PageLink href="/vt-list" className="nav-link" testId="navbar-home">
-
-                </PageLink>
               </NavItem>
               {user && (
                 <>
                   <NavItem>
-                    <PageLink href="/csr" className="nav-link" testId="navbar-csr">
-                      Client-side rendered page
-                    </PageLink>
-                  </NavItem>
-                  <NavItem>
-                    <PageLink href="/ssr" className="nav-link" testId="navbar-ssr">
-                      Server-side rendered page
-                    </PageLink>
-                  </NavItem>
-                  <NavItem>
-                    <PageLink href="/external" className="nav-link" testId="navbar-external">
-                      External API
+                    <PageLink href="/vt-list" className="nav-link" testId="navbar-vt-list">
+                      Kasety wideo
                     </PageLink>
                   </NavItem>
                 </>
@@ -79,15 +81,15 @@ const NavBar = () => {
                       src={user.picture}
                       alt="Profile"
                       className="nav-user-profile rounded-circle"
-                      width="50"
-                      height="50"
+                      width="40"
+                      height="40"
                       decode="async"
                       data-testid="navbar-picture-desktop"
                     />
                   </DropdownToggle>
                   <DropdownMenu>
                     <DropdownItem header data-testid="navbar-user-desktop">
-                      {user.name}
+                      {user.nickname}
                     </DropdownItem>
                     <DropdownItem className="dropdown-profile" tag="span">
                       <PageLink href="/profile" icon="user" testId="navbar-profile-desktop">
