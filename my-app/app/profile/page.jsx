@@ -50,7 +50,6 @@ export default withPageAuthRequired(Profile, {
 });
 
 function UserForm({ user }) {
-  // Stan formularza
   const [formData, setFormData] = useState({
     user_country: '',
     user_city: '',
@@ -84,7 +83,6 @@ function UserForm({ user }) {
     })
   }, [])
 
-  // Aktualizacja stanu przy zmianie wartości w formularzu
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -92,10 +90,8 @@ function UserForm({ user }) {
     });
   };
 
-  // Obsługa wysyłania formularza
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Wysyłanie danych do serwera
     fetch('/api/mssql/user-update', {
       method: 'POST',
       headers: {
@@ -138,8 +134,6 @@ function UserForm({ user }) {
         <Label for="user_phone">Telefon</Label>
         <Input type="text" name="user_phone" id="user_phone" value={formData.user_phone} onChange={handleChange} />
       </FormGroup>
-      {/* Powtórz powyższy wzorzec dla każdego pola formularza */}
-      {/* ... */}
       <Button type="submit">Submit</Button>
     </Form>
   );

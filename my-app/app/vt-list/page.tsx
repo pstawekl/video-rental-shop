@@ -2,28 +2,50 @@
 import Link from 'next/link';
 import { Router } from 'next/router';
 import react, { useEffect, useState } from "react";
-import { Button, Spinner } from "reactstrap";
+import { Button, Col, Row, Spinner } from "reactstrap";
+import { DbUser } from '../../utils/userUtils';
+import { useUser } from '@auth0/nextjs-auth0/client';
 
 interface VideoTape {
-    id: number;
-    name: string;
-    year: number;
-    director: string;
-    format: string;
-    length: string;
-    description: string;
-    isAvaible: boolean;
-    ageLimits: string;
-    genre: string;
-    price: number;
+    vt_id: number;
+    vt_name: string;
+    vt_year: number;
+    vt_director: string;
+    vt_format: string;
+    vt_length: string;
+    vt_description: string;
+    vt_age_limits: string;
+    vt_genre_id: number;
+    gn_name: string;
 }
 
+type VideoTapes = VideoTape[];
 export default function VideoTapesList() {
-    const [videoTapesList, setVideoTapesList] = useState<VideoTape[]>([]);
-    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const { user, isLoading } = useUser();
+    const [videoTapesList, setVideoTapesList] = useState<VideoTapes[]>([]);
+    const [dbUser, setDbUser] = useState<DbUser>();
+    const [isDbLoading, setIsDbLoading] = useState<boolean>(true);
+    
+    useEffect(() => {
+        if (user) {
+            fetch('/api/mssql/get-user-info', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ user: user })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const userInfo: DbUser = data.userInfo;
+                setDbUser(userInfo);
+            })
+            .catch(error => console.error('Error:', error))
+        }
+    }, [user])
 
     useEffect(() => {
-        fetch('/api/mssql/get-vt-list',
+        fetch('/api/mssql/video-tapes/get-vt-list',
             {
                 method: 'GET',
                 headers: {
@@ -32,26 +54,41 @@ export default function VideoTapesList() {
             })
             .then(response => response.json())
             .then(data => {
-                setVideoTapesList(data.vtList);
-                setIsLoading(false);
+                const vtList: VideoTapes[] = data.vtList;
+                setVideoTapesList(vtList);
+                setIsDbLoading(false);
             })
             .catch(error => {
                 console.log(error);
             })
+        console.log(videoTapesList);
     }, [])
 
-    if (!isLoading) {
+    if (!isLoading && !isDbLoading) {
         return (
             <div>
-                <div className="header"><Link href={'/'}><Button>Dodaj kasetę</Button></Link></div>
+                {
+                    dbUser?.user_role_id === 1 && <div className="header"><Link href={'/vt-list/add-vt'}><Button>Dodaj kasetę</Button></Link></div>
+                }
                 <h1>Lista kaset wideo:</h1>
+                <Row className="video-list__video header py-2">
+                    <Col className='video-list__title'>Tytuł</Col>
+                    <Col className='video-list__genre'>Gatunek</Col>
+                    <Col className='video-list__year'>Rok</Col>
+                    <Col className='video-list__price'>Cena</Col>
+                </Row>
                 {
                     videoTapesList != null && videoTapesList.map((videoTape) => {
+                        console.log(videoTape);
                         return (
-                            <div key={videoTape?.id}>
-                                <h3>{videoTape?.name}</h3>
-                                <p>{videoTape?.description}</p>
-                            </div>
+                            <Link href="/" style={{textDecoration: 'none', color: 'black'}}>
+                                <Row className={"video-list__video"} key={videoTape[0]?.vt_id}>
+                                    <Col className='video-list__title'>{videoTape[0]?.vt_name}</Col>
+                                    <Col className='video-list__genre'>{videoTape[0]?.gn_name}</Col>
+                                    <Col className='video-list__year'>{videoTape[0]?.vt_year}</Col>
+                                    <Col className='video-list__price'></Col>
+                                </Row>
+                            </Link>
                         )
                     })
                 }
@@ -59,7 +96,7 @@ export default function VideoTapesList() {
         )
     } else {
         return (
-            <div>
+            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%'}}>
                 <Spinner type="grow">
                     Loading...
                 </Spinner>

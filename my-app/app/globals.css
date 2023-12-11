@@ -54,3 +54,27 @@ p code {
 .navbar-nav .nav-link {
   padding: 0 !important;
 }
+
+
+.video-list {
+  display: flex;
+  flex-direction: column;  
+}
+
+.video-list__video:not(.header) {
+  
+  .col {
+    border: 1px solid black;
+  }
+}
+.video-list__video:hover:not(.header) {
+  cursor: pointer;
+  background: gray;
+  color: white;
+}
+.video-list__video.header {
+  background: gray;
+  color: white;
+  font-weight: 600;
+  border: 1px solid black;
+}
