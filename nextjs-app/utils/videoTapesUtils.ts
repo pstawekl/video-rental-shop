@@ -142,3 +142,16 @@ export const VideoGenres: {id: number, name: string}[] = [
         name: 'Wojenny'
     }
 ]
+
+export type VideoTape = {
+    vt_id: number;
+    vt_name: string;
+    vt_year: number;
+    vt_director: string;
+    vt_format: string;
+    vt_length: string;
+    vt_description: string;
+    vt_age_limits: string;
+    vt_genre_id: number;
+    gn_name: string;
+}

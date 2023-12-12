@@ -2,13 +2,13 @@
 import { useUser, withPageAuthRequired } from '@auth0/nextjs-auth0/client';
 import { useEffect, useState } from "react";
 import { Button, Col, Form, FormGroup, Input, Label, Row } from "reactstrap";
-import { AgeLimits, VideoGenres } from "../../../utils/videoTapesUtils";
+import { AgeLimits, VideoGenres } from "../../utils/videoTapesUtils";
 import { redirect } from "next/dist/server/api-utils";
-import Loading from '../../../components/Loading';
-import ErrorMessage from '../../../components/ErrorMessage';
-import { Router } from 'express';
+import Loading from '../../components/Loading';
+import ErrorMessage from '../../components/ErrorMessage';
+import { Router } from 'next/router';
 import { useRouter } from 'next/navigation';
-import { DbUser } from '../../../utils/userUtils';
+import { DbUser } from '../../utils/userUtils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
@@ -94,7 +94,7 @@ function AddVideoTape() {
                             <FontAwesomeIcon onClick={() => router.back()} icon={faArrowLeft} style={{fontSize: '2rem', cursor: 'pointer'}}/>
                         </Col>
                         <Col>
-                        <h2>Dodaj kasetę wideo do bazy</h2>
+                        <h3>Dodaj kasetę wideo do bazy</h3>
                         </Col>
                     </Row>
                     <Form onSubmit={handleSubmit}>
