@@ -39,7 +39,7 @@ DB_PORT='PORT DO KOMUNIKACJI Z SERWEREM'
 ```
 
 **Uwaga**: Upewnij się, że zastąpisz `AUTH0_SECRET` własnym sekretem (możesz wygenerować odpowiedni ciąg używając `openssl rand -hex 32` w wierszu poleceń).\
-**Uwaga**: Biblioteka `mssql` wymaga korzystania z samego adresu bez instancji po slashu oraz przekierowywania do konkretnej instancji przez port serwera. Skonfiguruj odpowiednio serwera SQL.
+**Uwaga**: Biblioteka `mssql` wymaga korzystania z samego adresu bez instancji po slashu oraz przekierowywania do konkretnej instancji przez port serwera. Skonfiguruj odpowiednio serwer SQL.
 
 ## Uruchomienie demonstracji
 
