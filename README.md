@@ -1,6 +1,6 @@
-# Aplikacja do wypożyczania kaaset wideo - Video Tape Shop
+# Aplikacja do wypożyczania kaset wideo - Video Tape Shop
 
-Ta aplikacja jest wykonana w technologii Next.js. Demonstruję ona system wypożyczania kaset wideo. Jest zintegrowany z systemem autentykacji użytkowników Auth0.
+Ta aplikacja jest wykonana w technologii Next.js. Demonstruję ona system wypożyczania kaset wideo. Jest zintegrowana z systemem autentykacji użytkowników Auth0.
 
 
 ## Konfiguracja projektu
