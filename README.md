@@ -2,13 +2,6 @@
 
 Ta aplikacja jest wykonana w technologii Next.js. Demonstruję ona system wypożyczania kaset wideo. Jest zintegrowany z systemem autentykacji użytkowników Auth0.
 
-Ten przykład pokazuje następujące przypadki użycia:
-
-- [Logowanie](https://github.com/auth0-samples/auth0-nextjs-samples/blob/main/Sample-01/components/NavBar.jsx#L61-L67)
-- [Wylogowywanie](https://github.com/auth0-samples/auth0-nextjs-samples/blob/main/Sample-01/components/NavBar.jsx#L93-L95)
-- [Pokazywanie profilu użytkownika](https://github.com/auth0-samples/auth0-nextjs-samples/blob/main/Sample-01/pages/profile.jsx)
-- [Ochrona strony renderowanej po stronie klienta](https://github.com/auth0-samples/auth0-nextjs-samples/blob/main/Sample-01/pages/profile.jsx#L43-L46)
-- [Wywoływanie interfejsów API](https://github.com/auth0-samples/auth0-nextjs-samples/blob/main/Sample-01/pages/external.jsx)
 
 ## Konfiguracja projektu
 
