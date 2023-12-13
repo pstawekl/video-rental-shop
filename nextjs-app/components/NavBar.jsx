@@ -70,7 +70,7 @@ const NavBar = () => {
                     className="btn btn-primary btn-margin"
                     tabIndex={0}
                     testId="navbar-login-desktop">
-                    Log in
+                    Zaloguj
                   </AnchorLink>
                 </NavItem>
               )}
@@ -93,12 +93,17 @@ const NavBar = () => {
                     </DropdownItem>
                     <DropdownItem className="dropdown-profile" tag="span">
                       <PageLink href="/profile" icon="user" testId="navbar-profile-desktop">
-                        Profile
+                        Profil
+                      </PageLink>
+                    </DropdownItem>
+                    <DropdownItem className="dropdown-profile" tag="span">
+                      <PageLink href="/orders" icon="user" testId="navbar-profile-desktop">
+                        Moje zamówienia
                       </PageLink>
                     </DropdownItem>
                     <DropdownItem id="qsLogoutBtn">
                       <AnchorLink href="/api/auth/logout" icon="power-off" testId="navbar-logout-desktop">
-                        Log out
+                        Wyloguj
                       </AnchorLink>
                     </DropdownItem>
                   </DropdownMenu>
@@ -112,7 +117,7 @@ const NavBar = () => {
                   className="btn btn-primary btn-block"
                   tabIndex={0}
                   testId="navbar-login-mobile">
-                  Log in
+                  Zaloguj
                 </AnchorLink>
               </Nav>
             )}
@@ -140,7 +145,7 @@ const NavBar = () => {
                 </NavItem>
                 <NavItem>
                   <PageLink href="/profile" icon="user" testId="navbar-profile-mobile">
-                    Profile
+                    Profil
                   </PageLink>
                 </NavItem>
                 <NavItem id="qsLogoutBtn">
@@ -149,7 +154,7 @@ const NavBar = () => {
                     className="btn btn-link p-0"
                     icon="power-off"
                     testId="navbar-logout-mobile">
-                    Log out
+                    Wyloguj
                   </AnchorLink>
                 </NavItem>
               </Nav>

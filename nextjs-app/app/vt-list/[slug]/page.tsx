@@ -8,7 +8,6 @@ import { Button, Col, Row } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faClose } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/navigation";
-import BlankImage from "https://cdn.vectorstock.com/i/1000x1000/50/20/no-photo-or-blank-image-icon-loading-images-vector-37375020.webp";
 import Link from "next/link";
 
 export default function VideoTapePage({ params }) {
@@ -81,10 +80,6 @@ export default function VideoTapePage({ params }) {
         console.log('vtape', vTape);
     }, [])
 
-    function handleBack() {
-        router.back();
-    }
-
     function handleOrder() {
         if (user && isAvaible) {
             fetch('/api/mssql/orders/add-order',
@@ -129,7 +124,7 @@ export default function VideoTapePage({ params }) {
                 </Row>
                 <Row>
                     <Col xs='1'>
-                        <FontAwesomeIcon onClick={handleBack} icon={faArrowLeft} style={{ fontSize: '2rem', cursor: 'pointer' }} />
+                        <FontAwesomeIcon onClick={() => router.back()} icon={faArrowLeft} style={{ fontSize: '2rem', cursor: 'pointer' }} />
                     </Col>
                     <Col>
                         <h3>{vTape.vt_name}</h3>
@@ -150,7 +145,7 @@ export default function VideoTapePage({ params }) {
                         <span>Format: {vTape.vt_format}</span>
                         <span style={{ fontSize: '1.5rem' }}>Cena: xyz zł</span>
                         {
-                            user && !isOrdering && <Button className="my-5" onClick={() => setIsOrdering(true)}>Chcę zamówić</Button>
+                            user && !isOrdering&& !isOrdered && <Button className="my-5" onClick={() => setIsOrdering(true)}>Chcę zamówić</Button>
                         }
                         {
                             user && isOrdering && <>
@@ -163,7 +158,7 @@ export default function VideoTapePage({ params }) {
                                     <Col>{datePlusSevenDays}</Col>
                                 </Row>
                                 <Button className="my-5" onClick={handleOrder} disabled={!isAvaible}>
-                                    {isAvaible ? 'Zamawiam' : 'Kaseta niedostępna'}
+                                    {isAvaible && !isOrdered ? 'Zamawiam' : 'Kaseta niedostępna'}
                                 </Button>
                             </>
 

@@ -78,3 +78,9 @@ p code {
   font-weight: 600;
   border: 1px solid black;
 }
+
+.order-row:hover {
+  cursor: pointer;
+  background: gray;
+  color: white;
+}

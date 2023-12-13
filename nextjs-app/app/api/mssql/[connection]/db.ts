@@ -25,6 +25,7 @@ export async function connectDB() {
 
 export async function executeQuery(query: string): Promise<any[]> {
   try {
+    console.log(query)
     const db = await connectDB();
     const result = await db.query(query);
     return result.recordset;
