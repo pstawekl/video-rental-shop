@@ -11,13 +11,6 @@ Użyj `npm`, aby zainstalować zależności projektu:
 npm install
 ```
 
-## Konfiguracja
-
-### Skonfiguruj dane uwierzytelniania
-
-Projekt musi być skonfigurowany z danymi dotyczącymi Twojej domeny Auth0, identyfikatora klienta (Client ID) i sekretu klienta (Client Secret), aby przepływ uwierzytelniania działał.
-Aby to zrobić, utwórz w projekcie nowy plik `env.local`, plik przechowywania zmiennych środowiskowych którego struktura powinna wyglądać tak (zobacz więcej informacji na temat [ładowania zmiennych środowiskowych w Next.js](https://nextjs.org/docs/basic-features/environment-variables)):
-
 ## Dla autentykacji użytkowników Auth0
 ```sh
 AUTH0_SECRET='LOSOWA_DŁUGA_WARTOŚĆ'
@@ -89,3 +82,10 @@ Auth0 pozwala:
 Projekt ma być w pełni sprawnym systemem wypożyczania kaset wideo online, który pozwala na utworzenie użytkownika, zarządzanie swoim kontem, wypożyczenie kasety wideo oraz zwrot kaset przez standardowego użytkownika. 
 Admin powinien mieć możliwość rozszerzania asortymentu w aplikacji, edytowania konkretnych kaset oraz usuwania ich z asortymentu, zarządzanie zamówieniami i podgląd zamówień oraz zarządzanie statusem danego zamówienia.
 Aplikacja ma być reaktywna, aktualizowana dynamicznie, stabilna oraz wydajna. Struktura aplikacji powoduje zadbanie o podstawowe bezpieczeństwo zarówno bazy danych SQL jak i danych użytkowników (bezpieczeństwo możemy również rozszerzyć o mechanizmy zabezpieczające aplikację przed SQL Injection).
+
+## Jak uruchomić aplikację?
+
+- Odtwórz bazę danych na swoim serwerze SQL
+- Ustaw lokalny adres bazy danych w zmiennej środowiskowej projektu w pliku .env
+- Wywołaj uruchomienie aplikacji w trybie developerskim. Otwórz Terminal (Ctrl+Shift+~ dla Visual Studio Code), następnie przejdź do folderu nextjs-app komendą `cd nextjs-app`. Uruchom aplikację w trybie developerskim komendą `npm run dev`.
+- Przejdź do aplikacji w przeglądarce wpisując adres `localhost:3000`.
