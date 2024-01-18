@@ -28,7 +28,6 @@ export default function OrderPage({ params }) {
             })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data);
                     const order: Order = data.order[0];
                     setOrder(order);
                 })
@@ -53,7 +52,6 @@ export default function OrderPage({ params }) {
             })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data);
                     setIsReturned(true);
                     setIsAfterReturn(true);
                 })

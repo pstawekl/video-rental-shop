@@ -27,11 +27,9 @@ export default function OrdersPage() {
                 .then(response => response.json())
                 .then(data => {
                     const orderList: Order[] = data.orders;
-                    console.log(orderList);
                     setOrderList(orderList);
                 })
                 .catch(error => console.error('Error:', error))
-            console.log('orderList', orderList)
         }
     }, [user])
 

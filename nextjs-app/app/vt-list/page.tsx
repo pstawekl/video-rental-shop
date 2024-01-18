@@ -42,14 +42,12 @@ export default function VideoTapesList() {
             .then(response => response.json())
             .then(data => {
                 const vtList: VideoTape[] = data.vtList[0];
-                console.log(vtList)
                 setVideoTapesList(vtList);
                 setIsDbLoading(false);
             })
             .catch(error => {
                 console.log(error);
             })
-        console.log(videoTapesList);
     }, [])
 
     if (!isLoading && !isDbLoading) {

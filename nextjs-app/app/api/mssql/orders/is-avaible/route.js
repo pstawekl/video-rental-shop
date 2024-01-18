@@ -11,7 +11,6 @@ export const POST = async (req, res) => {
             and or_vt_id = ${vtId}
             `);
         const isAvaible = count[0][''] === 0;
-        console.log(isAvaible);
         return Response.json({ status: 200, isAvaible: isAvaible });
     } catch (error) {
         return Response.json({ status: 500, error: error });

@@ -6,7 +6,7 @@ import { VideoTape } from "../../../utils/videoTapesUtils";
 import Loading from "../../../components/Loading";
 import { Button, Col, Row } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faClose } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faClose, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
@@ -31,7 +31,6 @@ export default function VideoTapePage({ params }) {
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 setIsAvaible(data.isAvaible);
             })
             .catch(error => {
@@ -54,7 +53,6 @@ export default function VideoTapePage({ params }) {
                     setDbUser(userInfo);
                 })
                 .catch(error => console.error('Error:', error))
-            console.log('dbuser', dbUser);
         }
     }, [user])
 
@@ -70,14 +68,12 @@ export default function VideoTapePage({ params }) {
             .then(response => response.json())
             .then(data => {
                 const vt: VideoTape = data.videoTape[0];
-                console.log(vt);
                 setVTape(vt);
                 setIsDbLoading(false);
             })
             .catch(error => {
                 console.log(error);
             })
-        console.log('vtape', vTape);
     }, [])
 
     function handleOrder() {
@@ -114,7 +110,7 @@ export default function VideoTapePage({ params }) {
     secondDate.setDate(date.getDate() + 7);
     const datePlusSevenDays = formatDate(secondDate);
 
-    if (vTape) {
+    if (vTape && dbUser) {
         return (
             <>
                 <Row>
@@ -122,13 +118,21 @@ export default function VideoTapePage({ params }) {
                         isOrdered && <AfterOrder />
                     }
                 </Row>
-                <Row>
+                <Row className="border-bottom border-light mb-5 d-flex align-items-center">
                     <Col xs='1'>
                         <FontAwesomeIcon onClick={() => router.back()} icon={faArrowLeft} style={{ fontSize: '2rem', cursor: 'pointer' }} />
                     </Col>
                     <Col>
                         <h3>{vTape.vt_name}</h3>
                     </Col>
+                    {
+                        dbUser.user_role_id === 1 && <>
+                        <Col></Col>
+                        <Col style={{display: "flex", justifyContent: "flex-end"}}>
+                            <Link href={`/edit-vt/vt-${vTape.vt_id}`}><FontAwesomeIcon icon={faPen} style={{color: "gray", cursor: "pointer", fontSize: '1.5rem'}}/></Link>
+                        </Col>
+                        </>
+                    }
                 </Row>
                 <Row>
                     <Col xs='12' md='6'>

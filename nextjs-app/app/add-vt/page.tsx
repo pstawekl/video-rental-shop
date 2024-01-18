@@ -3,15 +3,12 @@ import { useUser, withPageAuthRequired } from '@auth0/nextjs-auth0/client';
 import { useEffect, useState } from "react";
 import { Button, Col, Form, FormGroup, Input, Label, Row } from "reactstrap";
 import { AgeLimits, VideoGenres } from "../../utils/videoTapesUtils";
-import { redirect } from "next/dist/server/api-utils";
 import Loading from '../../components/Loading';
 import ErrorMessage from '../../components/ErrorMessage';
-import { Router } from 'next/router';
 import { useRouter } from 'next/navigation';
 import { DbUser } from '../../utils/userUtils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import Link from 'next/link';
 
 
 interface VideoTape {
@@ -80,8 +77,8 @@ function AddVideoTape() {
             body: JSON.stringify({ formData: formData, user: user })
         })
             .then(response => response.json())
-            .then(data => { console.log('Success:', data); router.push('/vt-list'); })
-            .catch(error => console.error('Error:', error));
+            .then(data => { router.push('/vt-list'); })
+            .catch(error => console.error(error));
     };
 
     if (user && dbUser?.user_role_id === 1) {

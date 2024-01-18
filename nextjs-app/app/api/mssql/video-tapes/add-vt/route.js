@@ -1,4 +1,5 @@
 import { executeQuery } from '../../[connection]/db';
+import { StringUtils } from '../../../[utils]/stringUtils';
 
 export const POST = async (req, res) => {
     try {
@@ -16,15 +17,15 @@ export const POST = async (req, res) => {
         ,[vt_format]
         ,[vt_length])
         VALUES
-        ('${formData.name}'
+        ('${StringUtils.ReplaceBlackChars(formData.name)}'
         ,${formData.genre_id}
-        ,'${formData.age_limits}'
-        ,'${formData.description}'
+        ,'${StringUtils.ReplaceBlackChars(formData.age_limits)}'
+        ,'${StringUtils.ReplaceBlackChars(formData.description)}'
         ,'${formData.image}'
         ,${formData.year}
-        ,'${formData.director}'
-        ,'${formData.format}'
-        ,'${formData.length}')
+        ,'${StringUtils.ReplaceBlackChars(formData.director)}'
+        ,'${StringUtils.ReplaceBlackChars(formData.format)}'
+        ,'${StringUtils.ReplaceBlackChars(formData.length)}')
             `);
         return Response.json({ status: 200 });
     } catch (error) {
